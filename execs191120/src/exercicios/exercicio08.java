@@ -42,6 +42,33 @@ public class exercicio08{
         System.out.print("O valor do lado 3 é: ");
         lado3 = r.nextInt();
         
+        // if a == b == c print equilatero
+        
+        // if a == b != c || a == c != b || b == c != a print isosceles
+        
+        // if a != b != c print escaleno
+        
+        // With loop comparison, could check as:
+        
+        // if equals == 3 print equilatero
+        
+        // if equals == 2 print isosceles
+        
+        // if equals < 1 print escaleno
+        
+        /* For loop that compares the values indicated:
+         * populates array1 with the values, array2 contains the same values;
+         * compares array1[n] with array2 values;
+         * if array1[n] == array2, a counter increases.
+         * !PROBLEM! comparing this way can lead to repeated comparisons:
+         * !SOLUTION 1!: if array1[n1] and array2[n1], it will not compare:
+         * Example: array1[0] wont compare with array2[0].
+         * !SOLUTION 1! !PROBLEM!: different comparisons will also repeat:
+         * Example: (array1[0] array2[1]) && (array1[1] && array2[0]);
+         * !SOLUTION 2!: create an array that will add the values 'n' of
+         * array1[n] as it is compared, thus excluding repeated comparisons.
+         */
+        
         //TODO conditional logic
         
     }

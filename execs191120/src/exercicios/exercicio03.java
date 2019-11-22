@@ -17,8 +17,10 @@ import javax.swing.JOptionPane;
 public class exercicio03 {
     
     public static void main(String[] args){
-        int valor1, valor2, valor3, valor4;
-        int menor;
+        int valor1, valor2, valor3, valor4; // Might change to a variable size int array?
+        int menor; // the smallest value
+        int forRuns = 0; // number of runs in the for loop
+        int repetidos = 1; // # of repeated "smallest" values
         valor1 = execsMethods.intInputBox("Valor 1");
         valor2 = execsMethods.intInputBox("Valor 2");
         valor3 = execsMethods.intInputBox("Valor 3");
@@ -30,10 +32,19 @@ public class exercicio03 {
             if(valores[l]<menor){
                 menor = valores[l];
             }
+            if(valores[l] == menor && forRuns > 0){
+                repetidos++;
+            }
+            forRuns++;
         }
         
-        String result = String.format("O resultado é: %d", menor);
-        JOptionPane.showMessageDialog(null, result);
+        if(repetidos>1){
+            String error = String.format("Há ao %d valores %d iguais! não há UM valor menor", repetidos, menor);
+            JOptionPane.showMessageDialog(null, error);
+        }else{
+            String result = String.format("O resultado é: %d", menor);
+            JOptionPane.showMessageDialog(null, result);
+        }
         
     }
     
