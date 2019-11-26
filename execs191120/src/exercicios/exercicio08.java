@@ -30,17 +30,17 @@ public class exercicio08{
     
     public static void main(String[] args){
         
-        int lado1, lado2, lado3;
+        int[] lados = {0,0,0};
         Scanner r = new Scanner(System.in);
         
         System.out.print("O valor do lado 1 é: ");
-        lado1 = r.nextInt();
+        lados[0] = r.nextInt();
         
         System.out.print("O valor do lado 2 é: ");
-        lado2 = r.nextInt();
+        lados[1] = r.nextInt();
         
         System.out.print("O valor do lado 3 é: ");
-        lado3 = r.nextInt();
+        lados[2] = r.nextInt();
         
         // if a == b == c print equilatero
         
@@ -69,7 +69,32 @@ public class exercicio08{
          * array1[n] as it is compared, thus excluding repeated comparisons.
          */
         
-        //TODO conditional logic
+        // Iterates between the 'lados' array and returns count of equal values
+        int count = execsMethods.countNumberEquals(lados);
+        
+        // String that will receive the value of the type of triangle
+        String triangle;
+        
+        switch(count){
+            // If count equals zero, no values in the array are equal.
+            case 0:
+                triangle = "escaleno";
+                break;
+            // If count equals 1, at least two values are equal
+            case 1:
+                triangle = "isóceles";
+                break;
+            // If count equals 3, all 3 values are equal
+            case 3:
+                triangle = "equilátero";
+                break;
+            // Defaults to an error string.
+            default:
+                triangle = "INVÁLIDO?";
+                break;
+        }
+        
+        System.out.printf("O triângulo é: %s\n", triangle);
         
     }
     

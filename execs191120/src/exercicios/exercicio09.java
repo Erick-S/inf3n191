@@ -5,6 +5,9 @@
  */
 package exercicios;
 
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Erick-S
@@ -19,6 +22,44 @@ package exercicios;
  * 003 = Prego;
  * Para qualquer outro código indicar ?Diversos?.
  */
+
+/*
+ * 'Product' codes have leading zeroes, so it will receive a number and add
+ * leading zeroes as needed with String.format("0nd", d) where 'd' is the number
+ * and n is the ammount of digits this string will have
+ */
 public class exercicio09 {
-    //TODO
+    
+    public static void main(String[] args){
+        
+        System.out.print("Procura de itens por códigos."
+                + "\nInsira um código para a pesquisa: ");
+        
+        Scanner r = new Scanner(System.in);
+        int pesquisa = r.nextInt();
+        
+        // String to return the code from the switch statement
+        String resultado;
+        
+        switch(pesquisa){
+            default:
+                // String.format("%03d", n) returns a number with up to 3 leading
+                // zeroes. EX: n = 5, formatted text will be "005".
+                resultado = String.format("%03d: ?DIVERSOS?", pesquisa);
+                break;
+            case 1:
+                resultado = "001: Parafusos";
+                break;
+            case 2:
+                resultado = "002: Porcas";
+                break;
+            case 3:
+                resultado = "003: Pregos";
+                break;
+        }
+        
+        System.out.print(resultado);
+        
+    }
+    
 }

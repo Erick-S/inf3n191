@@ -5,6 +5,8 @@
  */
 package exercicios;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Erick-S
@@ -16,5 +18,26 @@ package exercicios;
 //informações dos dois times como nome e número de gols daquela partida. Ao
 //final, o programa deverá dizer quem fora o vencedor 
 public class exercicio10 {
-    //TODO
+    
+    public static void main(String[] args){
+        
+        Scanner r = new Scanner(System.in);
+        int golsTimeA, golsTimeB;
+        
+        System.out.print("Inserir o número de gols do time A: ");
+        golsTimeA = r.nextInt();
+        
+        System.out.print("Inserir o número de gols do time B: ");
+        golsTimeB = r.nextInt();
+        
+        if(golsTimeA > golsTimeB){
+            System.out.print("Time A é o vencedor!");
+        }else if(golsTimeA < golsTimeB){
+            System.out.print("Time B é o vencedor!");
+        }else{
+            System.out.print("Ambos times empataram!");
+        }
+        
+    }
+    
 }
