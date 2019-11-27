@@ -5,7 +5,8 @@
  */
 package exercicios;
 
-import java.util.Scanner;
+import java.util.Arrays;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,46 +29,70 @@ import java.util.Scanner;
  */
 public class exercicio08{
     
+    private static boolean contains(final int[] array, final int value){
+        
+        boolean test = false;
+        
+        for(int i = 0; i < array.length; i++){
+            if(array[i] == value){
+                test = true;
+            }
+        }
+        
+        return test;
+        
+    }
+    
     public static void main(String[] args){
         
         int[] lados = {0,0,0};
-        Scanner r = new Scanner(System.in);
         
-        System.out.print("O valor do lado 1 é: ");
-        lados[0] = r.nextInt();
+        boolean validation = false;
         
-        System.out.print("O valor do lado 2 é: ");
-        lados[1] = r.nextInt();
+        // if a+b > c || a+c > b || b+c > a
         
-        System.out.print("O valor do lado 3 é: ");
-        lados[2] = r.nextInt();
+        // if lados contains 0
         
-        // if a == b == c print equilatero
-        
-        // if a == b != c || a == c != b || b == c != a print isosceles
-        
-        // if a != b != c print escaleno
-        
-        // With loop comparison, could check as:
-        
-        // if equals == 3 print equilatero
-        
-        // if equals == 2 print isosceles
-        
-        // if equals < 1 print escaleno
-        
-        /* For loop that compares the values indicated:
-         * populates array1 with the values, array2 contains the same values;
-         * compares array1[n] with array2 values;
-         * if array1[n] == array2, a counter increases.
-         * !PROBLEM! comparing this way can lead to repeated comparisons:
-         * !SOLUTION 1!: if array1[n1] and array2[n1], it will not compare:
-         * Example: array1[0] wont compare with array2[0].
-         * !SOLUTION 1! !PROBLEM!: different comparisons will also repeat:
-         * Example: (array1[0] array2[1]) && (array1[1] && array2[0]);
-         * !SOLUTION 2!: create an array that will add the values 'n' of
-         * array1[n] as it is compared, thus excluding repeated comparisons.
-         */
+        do{
+            lados[0] = execsMethods.intInputBox("lado 1");
+            lados[1] = execsMethods.intInputBox("lado 2");
+            lados[2] = execsMethods.intInputBox("lado 3");
+            
+            // If condition only to show the error dialog
+            if(contains(lados, 0)){
+                validation = false;
+                JOptionPane.showMessageDialog(null, "Erro: Um dos lados é zero!");
+            }else{
+                validation = true;
+            }
+            
+            // A condition for a triangle to be a triangle is that the sum of two
+            // of its sides must be greater than the third side.
+            // Should the third side be larger, it is not a triangle.
+            // There 'could' be a triangle where sides a and b are equal to side c,
+            // thus resulting in an area zero triangle.
+            
+            // The condition for a triangle to be a triangle is:
+            // a+b > c || a+c > b || b+c > a
+            // simplified as
+            // absolute(a - b) < c < a + b
+            // simplified as
+            // max(a,b,c) < a+b+c - max(a,b,c)
+            // simplified as
+            // 2*max(a,b,c) < a+b+c
+            
+            // As we are considering that a triangle can have area of 0, we compare
+            // with a '<=' instead of a '<'
+            int ladosMax = Arrays.stream(lados).max().getAsInt();
+            int ladosSum = Arrays.stream(lados).sum();
+            if((2*ladosMax)<=ladosSum){
+                validation = true;
+            }else{
+                validation = false;
+                JOptionPane.showMessageDialog(null, "Erro: Este não é um triângulo");
+            }
+            
+        }while(!validation);
         
         // Iterates between the 'lados' array and returns count of equal values
         int count = execsMethods.countNumberEquals(lados);
@@ -94,7 +119,9 @@ public class exercicio08{
                 break;
         }
         
-        System.out.printf("O triângulo é: %s\n", triangle);
+        String resultado = String.format("O triângulo é: %s\n", triangle);
+        
+        JOptionPane.showMessageDialog(null, resultado);
         
     }
     

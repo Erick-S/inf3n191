@@ -7,7 +7,6 @@ package exercicios;
 
 // use of BigDecimal for 'precision' 'monetary' value handling
 import java.math.BigDecimal;
-import java.math.BigInteger;
 // use of RoundingMode to round the 'monetary' value with a scale of 2
 import java.math.RoundingMode;
 import java.util.Scanner;

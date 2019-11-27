@@ -5,7 +5,6 @@
  */
 package exercicios;
 
-import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 /**
@@ -34,9 +33,8 @@ public class exercicio09 {
         
         System.out.print("Procura de itens por códigos."
                 + "\nInsira um código para a pesquisa: ");
-        
-        Scanner r = new Scanner(System.in);
-        int pesquisa = r.nextInt();
+
+        int pesquisa = execsMethods.intInputBox("pesquisa");
         
         // String to return the code from the switch statement
         String resultado;
@@ -58,7 +56,12 @@ public class exercicio09 {
                 break;
         }
         
-        System.out.print(resultado);
+        JOptionPane.showMessageDialog(
+                null, 
+                resultado, 
+                "Resultado:", 
+                JOptionPane.INFORMATION_MESSAGE
+        );
         
     }
     

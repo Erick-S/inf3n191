@@ -5,7 +5,7 @@
  */
 package exercicios;
 
-import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,22 +21,20 @@ public class exercicio10 {
     
     public static void main(String[] args){
         
-        Scanner r = new Scanner(System.in);
         int golsTimeA, golsTimeB;
+        String result = "Ambos times empataram!";
         
-        System.out.print("Inserir o número de gols do time A: ");
-        golsTimeA = r.nextInt();
+        golsTimeA = execsMethods.intInputBox("gols do time A");
         
-        System.out.print("Inserir o número de gols do time B: ");
-        golsTimeB = r.nextInt();
+        golsTimeB = execsMethods.intInputBox("gols do time B");
         
         if(golsTimeA > golsTimeB){
-            System.out.print("Time A é o vencedor!");
+            result = ("Time A é o vencedor!");
         }else if(golsTimeA < golsTimeB){
-            System.out.print("Time B é o vencedor!");
-        }else{
-            System.out.print("Ambos times empataram!");
+            result = ("Time B é o vencedor!");
         }
+        
+        JOptionPane.showMessageDialog(null, result);
         
     }
     

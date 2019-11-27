@@ -5,7 +5,9 @@
  */
 package exercicios;
 
-import java.util.Scanner;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,22 +19,20 @@ import java.util.Scanner;
 //algoritmo para ler o preço do litro da gasolina e o valor do pagamento, e 
 //exibir quantos litros ele conseguiu colocar no tanque 
 
-// ACHTUNG! => Exercícios a partir deste (Exercício 07) não utilizarão 
-// javax.swing panels por ocupar maior parte do tempo lendo sua documentação...
+// Refatorando exercícios a partir do sétimo para utilizar javax.swing OptionPanels
 public class exercicio07 {
     public static void main(String[] args){
-        float dinheiro, valorLitro;
-        Scanner r = new Scanner(System.in);
         
-        System.out.println("O separador de decimal é ','. Exemplo: 100,50");
+        BigDecimal dinheiro, valorLitro;
+
+        dinheiro = execsMethods.decimalInputBox("A quantidade de dinheiro que o motorista possui");
+        valorLitro = execsMethods.decimalInputBox("O valor (da gasolina) por litro");
         
-        System.out.print("A quantidade de dinheiro que o motorista possui é: ");
-        dinheiro = r.nextFloat();
+        BigDecimal tanqueAbastecido = dinheiro.divide(valorLitro, 2, RoundingMode.HALF_EVEN);
         
-        System.out.print("O valor (da gasolina) por litro é: ");
-        valorLitro = r.nextFloat();
+        String resultado = String.format("A quantidade em litros abastecida é: %f Litros\n", tanqueAbastecido);
         
-        float tanqueAbastecido = dinheiro/valorLitro;
-        System.out.printf("A quantidade em litros abastecida é: %f Litros", tanqueAbastecido);
+        JOptionPane.showMessageDialog(null, resultado);
+        
     }
 }
