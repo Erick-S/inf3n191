@@ -57,14 +57,14 @@ public class exercicio02 {
             
         }while(!validation);
         
-        int median = (grade1+grade2+grade3)/3;
+        int mean = (grade1+grade2+grade3)/3;
         
         String result;
         
-        if(median >= 60){
-            result = String.format("Aprovado com média: %d", median);
+        if(mean >= 60){
+            result = String.format("Aprovado com média: %d", mean);
         }else{
-            result = String.format("Reprovado com média: %d", median);
+            result = String.format("Reprovado com média: %d", mean);
         }
         
         JOptionPane.showMessageDialog(null, result);
