@@ -26,7 +26,7 @@ public class desafio01 {
     public static void main(String args[]){
         
         int[][] array = new int[5][4];  
-        //int[column][row]
+        //int[row][column]
 
         // Fills the array with the pattern
         for(int row = 0; row < array.length; row++){
