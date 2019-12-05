@@ -158,7 +158,15 @@ public class desafio01 {
                     
                     System.out.print(pat);
                 }else{
-                    System.out.print(" "+pattern[row][column]);
+                    // Pads the value to have leading zeros depending on the
+                    // first value of a column. The value printed has the mask
+                    // %0nd, where d = pattern[row][column] and n is the count
+                    // of digits of the number on the first row of that column
+                    String formattedInt = String.format(
+                            "%0"+countDigits(pattern[0][column])+"d", pattern[row][column]
+                    );
+//                    System.out.print(" "+pattern[row][column]);
+                    System.out.print(" "+formattedInt);
                 }
             }
             System.out.println(" ]");
