@@ -130,12 +130,9 @@ public class desafio01 {
      * Prints a two dimensional pattern
      * 
      * Prints the patter wrapped in "[]" characters between rows and replaces
-     * "0" values with dots according to the value of the column
-     * 
-     * @todo pad int values that are not the same quantity as the others
-     * EX: if first item of column is "10" and there is a "1" in that column,
-     * "1" should be "01" or " 1"
-     * 
+     * "0" values with dots according to the length of rows. Values also receive
+     * leading zeroes accordingly.
+     *
      * @param pattern 
      * 
      */
@@ -148,7 +145,9 @@ public class desafio01 {
             System.out.print("[");
             for(int column = 0;column < pattern[row].length; column++){
                 if(pattern[row][column] == 0){
-                    int count = countDigits(pattern[0][column]);
+                    // If the value of the cell is 0, it is replaced by a
+                    // quantity of periods depending on the size of the array
+                    int count = countDigits(pattern.length);
                     
                     String pat = String.format(
                             " %0"+count+"d",0
@@ -163,7 +162,8 @@ public class desafio01 {
                     // %0nd, where d = pattern[row][column] and n is the count
                     // of digits of the number on the first row of that column
                     String formattedInt = String.format(
-                            "%0"+countDigits(pattern[0][column])+"d", pattern[row][column]
+                            "%0"+countDigits(pattern.length)+"d",
+                            pattern[row][column]
                     );
 //                    System.out.print(" "+pattern[row][column]);
                     System.out.print(" "+formattedInt);
