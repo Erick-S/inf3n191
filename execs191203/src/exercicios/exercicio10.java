@@ -30,10 +30,11 @@ public class exercicio10 {
      * @param array Array to be sorted
      * @param quantity Quantity of values displayed
      */
-    public static void printShortestsReverse(Integer[] array, int quantity){
+    public static void printShortestsReverse(int[] array, int quantity){
         
         // Array organizado em ordem crescente
-        Arrays.sort(array);
+        // Arrays.sort(array);
+        array = sort.bubbleSort(array);
         
         // array irá receber ele mesmo, mas com quantidade reduzida
         array = Arrays.copyOf(array, quantity);
@@ -59,10 +60,11 @@ public class exercicio10 {
      * @param array Array to be sorted
      * @param quantity Quantity of values displayed
      */
-    public static void printLongestsReverse(Integer[] array, int quantity){
+    public static void printLongestsReverse(int[] array, int quantity){
         
         // Organiza o array em ordem inversa
-        Arrays.sort(array, Collections.reverseOrder());
+        // Arrays.sort(array, Collections.reverseOrder());
+        array = sort.bubbleSortReverse(array);
         
         // array irá receber ele mesmo, mas com quantidade reduzida
         array = Arrays.copyOf(array, quantity);
@@ -97,7 +99,7 @@ public class exercicio10 {
         int quantidade = r.nextInt();
         
         // Armazena todas as distâncias
-        Integer[] quilometragens = new Integer[quantidade];
+        int[] quilometragens = new int[quantidade];
         
         // Inserir todas as distâncias
         for(int i = 0; i < quantidade; i++){
