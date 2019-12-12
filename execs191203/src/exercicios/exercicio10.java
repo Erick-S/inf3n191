@@ -5,8 +5,7 @@
  */
 package exercicios;
 
-import java.util.Arrays;
-import java.util.Collections;
+// @! removido java.util.Arrays e .Collections por utilizar a classe 'sort'
 import java.util.Scanner;
 
 /**
@@ -32,23 +31,15 @@ public class exercicio10 {
      */
     public static void printShortestsReverse(int[] array, int quantity){
         
-        // Array organizado em ordem crescente
-        // Arrays.sort(array);
+        // Organiza o array com bubble sort
         array = sort.bubbleSort(array);
         
-        // array irá receber ele mesmo, mas com quantidade reduzida
-        array = Arrays.copyOf(array, quantity);
-        
-        // Array iterado em ordem reversa
-        for(
-            int i = array.length;
-            i > array.length-quantity;
-            i--
-        ){
+        // Array iterado em ordem normal
+         for(int i = 0; i < quantity; i++){
             System.out.printf(
                     "%dª menor distância: %d\n",
-                    i,
-                    array[i-1]
+                    i+1,
+                    array[i]
             );
         }
         
@@ -62,23 +53,15 @@ public class exercicio10 {
      */
     public static void printLongestsReverse(int[] array, int quantity){
         
-        // Organiza o array em ordem inversa
-        // Arrays.sort(array, Collections.reverseOrder());
-        array = sort.bubbleSortReverse(array);
-        
-        // array irá receber ele mesmo, mas com quantidade reduzida
-        array = Arrays.copyOf(array, quantity);
-        
-        // Array iterado em ordem reversa
-        for(
-            int i = array.length;
-            i > array.length-quantity;
-            i--
-        ){
+        // Organiza o array com bubble sort
+        array = sort.bubbleSort(array);
+       
+         // Array iterado em ordem reversa
+        for(int i = 1; i <= quantity; i++){
             System.out.printf(
                     "%dª maior distância: %d\n",
                     i,
-                    array[i-1]
+                    array[array.length-i]
             );
         }
         
