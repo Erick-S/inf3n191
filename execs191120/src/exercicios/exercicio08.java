@@ -1,38 +1,26 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package exercicios;
 
 import java.util.Arrays;
 import javax.swing.JOptionPane;
 
-/**
+/* "Faça um programa que receba 3 valores que representarão os lados de um 
+ * triângulo e verifique se os valores formam um triângulo e classifique esse 
+ * triângulo como:
+ * - eqüilátero (3 lados iguais);
+ * - isósceles (2 lados iguais);
+ * - escaleno (3 lados diferentes).
  *
- * @author Erick-S
- */
-
-//Exercício
-//Faça um programa que receba 3 valores que representarão os lados de um 
-//triângulo e verifique se os valores formam um triângulo e classifique esse 
-//triângulo como:
-/*
- *   eqüilátero (3 lados iguais);
- *   isósceles (2 lados iguais);
- *   escaleno (3 lados diferentes).
- */
-//Lembre-se que para formar um triângulo:
-/*
- *  nenhum dos lados pode ser igual a zero;
- *  um lado não pode ser maior do que a soma dos outros dois;
+ * Lembre-se que para formar um triângulo:
+ * - nenhum dos lados pode ser igual a zero;
+ * - um lado não pode ser maior do que a soma dos outros dois;"
  */
 public class exercicio08{
     
-    private static boolean contains(final int[] array, final int value){
+    // Verifica se este vetor contem o valor 'value'
+    private static boolean contains(int[] array, int value){
         
         boolean test = false;
-        
+
         for(int i = 0; i < array.length; i++){
             if(array[i] == value){
                 test = true;
@@ -45,82 +33,95 @@ public class exercicio08{
     
     public static void main(String[] args){
         
+        // Vetor com os lados de um triângulo
         int[] lados = {0,0,0};
         
+        // Variável de validação de um triângulo
         boolean validation = false;
         
-        // if a+b > c || a+c > b || b+c > a
+        /* Triângulo é INválido se:
+         * a+b > c OU a+c > b OU b+c > a
+         * algum lado é 0
+         */
         
-        // if lados contains 0
-        
+        // Requisita do usuário os lados enquanto o triângulo não for válido
         do{
-            lados[0] = execsMethods.intInputBox("lado 1");
-            lados[1] = execsMethods.intInputBox("lado 2");
-            lados[2] = execsMethods.intInputBox("lado 3");
+            lados[0] = Method.intInputBox("lado 1");
+            lados[1] = Method.intInputBox("lado 2");
+            lados[2] = Method.intInputBox("lado 3");
             
-            // If condition only to show the error dialog
+            // Condição de erro onde um ou mais lados é zero
             if(contains(lados, 0)){
                 validation = false;
-                JOptionPane.showMessageDialog(null, "Erro: Um dos lados é zero!");
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Erro: Um dos lados é zero!"
+                );
             }else{
                 validation = true;
             }
             
-            // A condition for a triangle to be a triangle is that the sum of two
-            // of its sides must be greater than the third side.
-            // Should the third side be larger, it is not a triangle.
-            // There 'could' be a triangle where sides a and b are equal to side c,
-            // thus resulting in an area zero triangle.
+            // Uma condição para que um triângulo seja válido é que a soma de
+            // dois de seus lados deve ser maior que um terceiro lado.
+            // Caso o terceiro lado for maior, a figura não é um triângulo.
+            // Poderá existir um triângulo hipotético onde a soma dos dois lados
+            // é igual ao terceiro lado, resultando em uma figura triangular com
+            // área igual a zero (Conhecido como "Triângulo Degenerado").
             
-            // The condition for a triangle to be a triangle is:
+            // A expressão para um triângulo válido poderá ser representada como
             // a+b > c || a+c > b || b+c > a
-            // simplified as
-            // absolute(a - b) < c < a + b
-            // simplified as
+            // Simplificada como
+            // absoluto(a - b) < c < a + b
+            // Ou reperesentada como
             // max(a,b,c) < a+b+c - max(a,b,c)
-            // simplified as
+            // De maneira simplificada
             // 2*max(a,b,c) < a+b+c
             
-            // As we are considering that a triangle can have area of 0, we compare
-            // with a '<=' instead of a '<'
+            // Como consideramos um triângulo degenerado como um caso válido,
+            // iremos comparar com um <=, pois as somas poderão ser iguais ao
+            // terceiro lado
             int ladosMax = Arrays.stream(lados).max().getAsInt();
             int ladosSum = Arrays.stream(lados).sum();
             if((2*ladosMax)<=ladosSum){
                 validation = true;
+            // No caso do triângulo falhar a validação, informar que é um
+            // triângulo inválido.
             }else{
                 validation = false;
-                JOptionPane.showMessageDialog(null, "Erro: Este não é um triângulo");
+                JOptionPane.showMessageDialog(
+                        null, "Erro: Este não é um triângulo"
+                );
             }
             
         }while(!validation);
         
-        // Iterates between the 'lados' array and returns count of equal values
-        int count = execsMethods.countNumberEquals(lados);
+        // Contagem de valores iguais nos lados
+        int count = Method.countNumberEquals(lados);
         
-        // String that will receive the value of the type of triangle
+        // Texto para informar o tipo do triângulo, iterado pelo switch{case:}
         String triangle;
         
         switch(count){
-            // If count equals zero, no values in the array are equal.
+            // Se a contagem de números iguais for zero, o triângulo é escaleno
             case 0:
                 triangle = "escaleno";
                 break;
-            // If count equals 1, at least two values are equal
+            // Se ao menos um valor for igual, o triângulo é isóceles
             case 1:
                 triangle = "isóceles";
                 break;
-            // If count equals 3, all 3 values are equal
+            // Se todos os valores forem iguais, o triângulo é equilátero
             case 3:
                 triangle = "equilátero";
                 break;
-            // Defaults to an error string.
+            // Em caso inválido...
             default:
                 triangle = "INVÁLIDO?";
                 break;
         }
         
+        // Formatação e apresentação do resultado
         String resultado = String.format("O triângulo é: %s\n", triangle);
-        
         JOptionPane.showMessageDialog(null, resultado);
         
     }

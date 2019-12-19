@@ -1,50 +1,41 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package exercicios;
 
 import javax.swing.JOptionPane;
 
-/**
+/*Utilize a estrutura if para fazer um programa que retorne o nome de um 
+ *produto a partir do código do mesmo. Considere os seguintes códigos:
  *
- * @author Erick-S
- */
-
-//Exercício
-//Utilize a estrutura if para fazer um programa que retorne o nome de um 
-//produto a partir do código do mesmo. Considere os seguintes códigos:
-/*
  * 001 = Parafuso;
  * 002 = Porca;
  * 003 = Prego;
  * Para qualquer outro código indicar ?Diversos?.
  */
-
-/*
- * 'Product' codes have leading zeroes, so it will receive a number and add
- * leading zeroes as needed with String.format("0nd", d) where 'd' is the number
- * and n is the ammount of digits this string will have
+/* Regras Extras:
+ * Os códigos de produtos possuem zeros iniciais, portanto o resultado irá ser
+ * formatado com a função String.format("0nd", d), onde 'd' é o número a ser
+ * apresentado e 'n' é a quantidade de zeros iniciais.
+ * Ex: 03d poderá exibir um valor '001' para o número 1, ou '1000' para o número
+ * 1000.
  */
-public class exercicio09 {
+public class exercicio09{
     
     public static void main(String[] args){
-        
-        System.out.print("Procura de itens por códigos."
-                + "\nInsira um código para a pesquisa: ");
 
-        int pesquisa = execsMethods.intInputBox("pesquisa");
+        // Pesquisa por código
+        int pesquisa = Method.intInputBox("pesquisa");
         
-        // String to return the code from the switch statement
+        // Texto resultante
         String resultado;
         
+        // Retornos
         switch(pesquisa){
+            // Caso for um outro código, retornar categoria ?DIVERSOS?
             default:
-                // String.format("%03d", n) returns a number with up to 3 leading
-                // zeroes. EX: n = 5, formatted text will be "005".
+                // Formatação do texto com zeros iniciais, conforme descrito
+                // anteriormente
                 resultado = String.format("%03d: ?DIVERSOS?", pesquisa);
                 break;
+            // Caso pesquisa for entre 1 e 3, retorna estes códigos
             case 1:
                 resultado = "001: Parafusos";
                 break;
@@ -56,6 +47,7 @@ public class exercicio09 {
                 break;
         }
         
+        // Exibição do resultado
         JOptionPane.showMessageDialog(
                 null, 
                 resultado, 

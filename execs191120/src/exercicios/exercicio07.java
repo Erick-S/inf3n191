@@ -1,37 +1,44 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package exercicios;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Erick-S
- */
+// "Um motorista deseja colocar no seu tanque X reais de gasolina. Escreva um 
+// algoritmo para ler o preço do litro da gasolina e o valor do pagamento, e 
+// exibir quantos litros ele conseguiu colocar no tanque "
 
-//Exercício
-//Um motorista deseja colocar no seu tanque X reais de gasolina. Escreva um 
-//algoritmo para ler o preço do litro da gasolina e o valor do pagamento, e 
-//exibir quantos litros ele conseguiu colocar no tanque 
-
-// Refatorando exercícios a partir do sétimo para utilizar javax.swing OptionPanels
-public class exercicio07 {
+public class exercicio07{
     public static void main(String[] args){
         
+        // Valores do dinheiro e do litro da gasolina, com precisão decimal em 2
         BigDecimal dinheiro, valorLitro;
+        short precisao = 2;
 
-        dinheiro = execsMethods.decimalInputBox("A quantidade de dinheiro que o motorista possui");
-        valorLitro = execsMethods.decimalInputBox("O valor (da gasolina) por litro");
+        // Inserção da quantidade de dinheiro e do valor do litro da gasolina
+        dinheiro = Method.decimalInputBox(
+                "A quantidade de dinheiro que o motorista possui", 
+                precisao
+        );
+        valorLitro = Method.decimalInputBox(
+                "O valor (da gasolina) por litro",
+                precisao
+        );
         
-        BigDecimal tanqueAbastecido = dinheiro.divide(valorLitro, 2, RoundingMode.HALF_EVEN);
+        // Quantidade de litros abastecida é a divisão entre dinheiro e o valor
+        // do litro da gasolina, com precisão decimal em 2, e arredondado de
+        // forma equidistante, ou para o valor par mais próximo.
+        BigDecimal tanqueAbastecido = dinheiro.divide(
+                valorLitro,
+                precisao,
+                RoundingMode.HALF_EVEN
+        );
         
-        String resultado = String.format("A quantidade em litros abastecida é: %f Litros\n", tanqueAbastecido);
-        
+        // Formatação e apresentação do resultado
+        String resultado = String.format(
+                "A quantidade em litros abastecida é: %f Litros",
+                tanqueAbastecido
+        );        
         JOptionPane.showMessageDialog(null, resultado);
         
     }
